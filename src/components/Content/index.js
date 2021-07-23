@@ -1,5 +1,5 @@
 import CartListItem from "./CartListItem";
-import MainTitle from "./MainTitle";
 import ProductListItem from "./ProductListItem";
+import MainPageProduct from "./MainPageProduct";
 
-export { CartListItem, MainTitle, ProductListItem };
+export { CartListItem, ProductListItem, MainPageProduct };

@@ -13,15 +13,15 @@ const NavMenu = () => {
 };
 
 const Wrapper = styled.div`
+  width: 30vw;
   display: flex;
+  align-items: center;
 `;
 
 const Menu = styled(Link)`
   display: inline-block;
-  padding: 1.5rem 0;
-  width: 11rem;
-  text-align: center;
-  font-size: 1.5rem;
+  padding: 0 1rem;
+  font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
   color: #333;

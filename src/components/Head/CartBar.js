@@ -2,50 +2,42 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+
 const CartBar = () => {
   return (
-    <Wrapper>
-      <ItemView>
-        <Icon src="" alt="" />
-        <ItemText>CART</ItemText>
+    <Container>
+      <Wrapper>
+        <FontAwesomeIcon icon={faShoppingCart} size="sm" />
+        <span>CART</span>
         <CountText>13</CountText>
-      </ItemView>
-    </Wrapper>
+      </Wrapper>
+    </Container>
   );
 };
 
+const Container = styled.div`
+  width: 30vw;
+  display: flex;
+  justify-content: flex-end;
+`;
+
 const Wrapper = styled(Link)`
+  width: 7rem;
+  height: 3rem;
   display: flex;
-  flex: 1;
-  flex-direction: row-reverse;
-  text-decoration: none;
-  color: #333;
-`;
-
-const ItemView = styled.div`
-  display: flex;
+  padding: 0 0.5rem;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
-  padding: 0.5rem 0;
-  width: 9.5rem;
-  background: grey;
-  cursor: pointer;
+  text-decoration: none;
+  background-color: #333;
+  color: #fff;
+  border-radius: 1.5rem;
 `;
 
-const Icon = styled.img`
-  width: 20px;
-  height: 20px;
-`;
-
-const ItemText = styled.span`
-  display: inline-block;
-  font-size: 1.8rem;
-  font-weight: 600;
-`;
-
-const CountText = styled(ItemText)`
-  background: red;
-  border-radius: 10%;
+const CountText = styled.span`
+  font-weight: bold;
 `;
 
 export default CartBar;

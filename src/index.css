@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "LuamRegular";
+  src: local("LuamRegular"), url("./fonts/Luam-Regular.ttf") format("truetype");
+  font-weight: regular;
+}
+
+@font-face {
+  font-family: "AcquireRegular";
+  src: local("AcquireRegular"), url("./fonts/Aquire.otf") format("opentype");
+  font-weight: regular;
+}
