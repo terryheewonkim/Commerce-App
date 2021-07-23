@@ -5,9 +5,9 @@ import styled from "styled-components";
 const NavMenu = () => {
   return (
     <Wrapper>
-      <Menu>NEW ARRIVALS</Menu>
-      <Menu>BEST SELLERS</Menu>
-      <Menu>MD'S PICK</Menu>
+      <Menu to="/products/list/new">NEW ARRIVALS</Menu>
+      <Menu to="/products/list/best">BEST SELLERS</Menu>
+      <Menu to="/products/list/mdpick">MD'S PICK</Menu>
     </Wrapper>
   );
 };
@@ -25,6 +25,9 @@ const Menu = styled(Link)`
   font-weight: 600;
   text-decoration: none;
   color: #333;
+  .active {
+    border-bottom: 2px solid #333;
+  }
 `;
 
 export default NavMenu;

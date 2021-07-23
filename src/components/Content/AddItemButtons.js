@@ -25,8 +25,7 @@ const CartButton = styled.span`
   cursor: pointer;
   transition: all 0.25s ease;
   &:hover {
-    background-color: #faa0a0;
-    border: 2px solid #bb3b3b;
+    font-size: 1.2rem;
   }
 `;
 

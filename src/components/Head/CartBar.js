@@ -8,7 +8,7 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 const CartBar = () => {
   return (
     <Container>
-      <Wrapper>
+      <Wrapper to="/cart">
         <FontAwesomeIcon icon={faShoppingCart} size="sm" />
         <span>CART</span>
         <CountText>7</CountText>

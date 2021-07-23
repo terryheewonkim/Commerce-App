@@ -1,15 +1,22 @@
 import React from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router";
 
 import AddItemButtons from "./AddItemButtons";
 
 const MainPageProduct = ({ src, title, price }) => {
+  const history = useHistory();
+
   return (
     <Wrapper>
-      <ProductWrapper>
+      <ProductWrapper
+        onClick={() => {
+          history.push("/product/detail");
+        }}
+      >
         <img src={src} alt="" />
         <ProductTitle>{title}</ProductTitle>
-        <ProductPrice>₩{price.toLocaleString()}</ProductPrice>
+        <ProductPrice>₩ {price.toLocaleString()}</ProductPrice>
       </ProductWrapper>
       <AddItemButtons />
     </Wrapper>
@@ -36,11 +43,13 @@ const ProductWrapper = styled.div`
 
 const ProductTitle = styled.span`
   display: block;
-  font-size: 0.8rem;
+  height: 3rem;
+  font-size: 0.9rem;
 `;
 
 const ProductPrice = styled.span`
   display: block;
+  font-size: 1.1rem;
   font-weight: bold;
 `;
 

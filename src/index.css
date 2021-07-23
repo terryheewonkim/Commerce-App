@@ -1,6 +1,14 @@
 @font-face {
-  font-family: "LuamRegular";
-  src: local("LuamRegular"), url("./fonts/Luam-Regular.ttf") format("truetype");
+  font-family: "OktaNeueRegular";
+  src: local("OktaNeueRegular"),
+    url("./fonts/OktaNeue-UltraLight.otf") format("opentype");
+  font-weight: regular;
+}
+
+@font-face {
+  font-family: "OktaNeueItalic";
+  src: local("OktaNeueItalic"),
+    url("./fonts/OktaNeue-BlackItalic.otf") format("opentype");
   font-weight: regular;
 }
 

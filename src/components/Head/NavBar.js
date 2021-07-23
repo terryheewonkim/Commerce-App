@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { NavMenu, CartBar } from ".";
@@ -7,7 +8,7 @@ const NavBar = () => {
   return (
     <Container>
       <NavMenu />
-      <Logo>SHOPFLEX</Logo>
+      <Logo to="/">SHOPFLEX</Logo>
       <CartBar />
     </Container>
   );
@@ -26,8 +27,10 @@ const Container = styled.div`
   background-color: rgba(255, 255, 255, 0.95);
 `;
 
-const Logo = styled.h2`
+const Logo = styled(Link)`
   width: 30vw;
+  text-decoration: none;
+  color: #333;
   font-family: "AcquireRegular";
   text-align: center;
   font-size: 2rem;
