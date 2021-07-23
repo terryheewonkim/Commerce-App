@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import AddItemButtons from "./AddItemButtons";
+
 const MainPageProduct = ({ src, title, price }) => {
   return (
     <Wrapper>
@@ -9,6 +11,7 @@ const MainPageProduct = ({ src, title, price }) => {
         <ProductTitle>{title}</ProductTitle>
         <ProductPrice>₩{price.toLocaleString()}</ProductPrice>
       </ProductWrapper>
+      <AddItemButtons />
     </Wrapper>
   );
 };
@@ -17,7 +20,6 @@ const Wrapper = styled.div`
   display: inline-block;
   width: 22rem;
   padding: 1rem;
-  cursor: pointer;
   transition: all 0.25s ease;
   &:hover {
     box-shadow: 3px 5px 18px 3px rgba(0, 0, 0, 0.5);
@@ -25,6 +27,8 @@ const Wrapper = styled.div`
 `;
 
 const ProductWrapper = styled.div`
+  margin-bottom: 1rem;
+  cursor: pointer;
   img {
     width: 100%;
   }
