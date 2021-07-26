@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 // components
+import LikeButton from "./LikeButton";
 import AddItemButtons from "./AddItemButtons";
 
-const MainPageProduct = ({ src, title, price }) => {
+const InnerPageProduct = ({ src, title, price }) => {
   const history = useHistory();
 
   return (
@@ -17,6 +18,7 @@ const MainPageProduct = ({ src, title, price }) => {
         <img src={src} alt="" />
         <ProductTitle>{title}</ProductTitle>
         <ProductPrice>₩ {price.toLocaleString()}</ProductPrice>
+        <LikeButton />
       </ProductWrapper>
       <AddItemButtons />
     </Wrapper>
@@ -24,33 +26,26 @@ const MainPageProduct = ({ src, title, price }) => {
 };
 
 const Wrapper = styled.div`
-  display: inline-block;
-  width: 22rem;
+  width: 16rem;
   padding: 1rem;
-  transition: all 0.25s ease;
-  &:hover {
-    box-shadow: 3px 5px 18px 3px rgba(0, 0, 0, 0.5);
-  }
+  position: relative;
 `;
 
 const ProductWrapper = styled.div`
-  margin-bottom: 1rem;
   cursor: pointer;
   img {
     width: 100%;
   }
 `;
 
-const ProductTitle = styled.span`
-  display: block;
-  height: 3rem;
-  font-size: 0.9rem;
+const ProductTitle = styled.p`
+  font-size: 0.8rem;
 `;
 
 const ProductPrice = styled.span`
-  display: block;
-  font-size: 1.1rem;
-  font-weight: bold;
+  display: inline-block;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
 `;
 
-export default MainPageProduct;
+export default InnerPageProduct;

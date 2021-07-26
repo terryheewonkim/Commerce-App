@@ -25,6 +25,7 @@ const Title = styled.h1`
   text-align: center;
   font-size: 2.2rem;
   letter-spacing: 0.2rem;
+  margin-bottom: 0.5rem;
 `;
 
 export default MainTitle;
