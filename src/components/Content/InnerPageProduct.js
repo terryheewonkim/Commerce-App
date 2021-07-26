@@ -5,19 +5,19 @@ import { useHistory } from "react-router-dom";
 import LikeButton from "./LikeButton";
 import AddItemButtons from "./AddItemButtons";
 
-const InnerPageProduct = ({ src, title, price }) => {
+const InnerPageProduct = ({ src, title, price, prodId, prodTypeName }) => {
   const history = useHistory();
 
   return (
     <Wrapper>
       <ProductWrapper
         onClick={() => {
-          history.push("/products/detail");
+          history.push(`/products/detail/${prodTypeName}/${prodId}`);
         }}
       >
         <img src={src} alt="" />
         <ProductTitle>{title}</ProductTitle>
-        <ProductPrice>₩ {price.toLocaleString()}</ProductPrice>
+        <ProductPrice>₩ {(+price).toLocaleString()}</ProductPrice>
         <LikeButton />
       </ProductWrapper>
       <AddItemButtons />
@@ -46,6 +46,7 @@ const ProductPrice = styled.span`
   display: inline-block;
   font-size: 1rem;
   margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
 `;
 
 export default InnerPageProduct;

@@ -12,6 +12,7 @@ const Footer = () => {
 const Wrapper = styled.div`
   padding: 1rem 0;
   width: 100%;
+  margin-top: 3rem;
 `;
 
 const FooterText = styled.span`

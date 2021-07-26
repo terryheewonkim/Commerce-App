@@ -12,9 +12,9 @@ const CartListItem = ({ src }) => {
         <span>₩ 109,000</span>
       </ItemDetail>
       <ButtonsContainer>
-        <MinusButton>-</MinusButton>
+        <Button>-</Button>
         <span>3</span>
-        <PlusButton>+</PlusButton>
+        <Button>+</Button>
       </ButtonsContainer>
       <ItemTotalPrice>
         <p>Total</p>
@@ -60,16 +60,15 @@ const ButtonsContainer = styled.div`
   }
 `;
 
-const MinusButton = styled.button`
+const Button = styled.button`
   background: none;
   border: 2px solid #333;
+  border-radius: 10px;
   width: 3rem;
   height: 2.5rem;
   font-size: 1.5rem;
   cursor: pointer;
 `;
-
-const PlusButton = styled(MinusButton)``;
 
 const ItemTotalPrice = styled.div`
   width: 15%;

@@ -4,19 +4,19 @@ import { useHistory } from "react-router";
 // components
 import AddItemButtons from "./AddItemButtons";
 
-const MainPageProduct = ({ src, title, price }) => {
+const MainPageProduct = ({ src, title, price, prodId, prodTypeName }) => {
   const history = useHistory();
 
   return (
     <Wrapper>
       <ProductWrapper
         onClick={() => {
-          history.push("/products/detail");
+          history.push(`/products/detail/${prodTypeName}/${prodId}`);
         }}
       >
         <img src={src} alt="" />
         <ProductTitle>{title}</ProductTitle>
-        <ProductPrice>₩ {price.toLocaleString()}</ProductPrice>
+        <ProductPrice>₩ {(+price).toLocaleString()}</ProductPrice>
       </ProductWrapper>
       <AddItemButtons />
     </Wrapper>
@@ -51,6 +51,7 @@ const ProductPrice = styled.span`
   display: block;
   font-size: 1.1rem;
   font-weight: bold;
+  letter-spacing: 0.5px;
 `;
 
 export default MainPageProduct;

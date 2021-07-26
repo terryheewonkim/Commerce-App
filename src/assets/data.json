@@ -1,0 +1,102 @@
+{
+  "new-list": [
+    {
+      "prodId": "n1",
+      "prodTypeId": "1",
+      "prodTypeName": "new",
+      "prodName": "BDG Stella Shirt Jacket",
+      "prodImgUrl": "https://i.localised.com/img/uo/product/6c80fcfc-d2cd-48b7-99d1-c2647943f8f6.jpg?cb=1626959544221",
+      "prodPrice": "110000",
+      "prodDescription": "Bold shirt jacket from UO’s own BDG. Structured cotton design fitted with a button placket and pockets at the front.",
+      "prodContentCare": ["100% Cotton", "Machine wash", "Imported"]
+    },
+    {
+      "prodId": "n2",
+      "prodTypeId": "1",
+      "prodTypeName": "new",
+      "prodName": "Creedence Clearwater Revival Psychedelic Tee",
+      "prodImgUrl": "https://i.localised.com/img/uo/product/2497dbd3-aa23-4ed8-801c-4c0b3d7a9e0b.jpg?cb=1626959544221",
+      "prodPrice": "48000",
+      "prodDescription": "Classic cotton t-shirt topped with throwback Creedence Clearwater Revival graphics at the front.",
+      "prodContentCare": ["100% Cotton", "Machine wash", "Imported"]
+    },
+    {
+      "prodId": "n3",
+      "prodTypeId": "1",
+      "prodTypeName": "new",
+      "prodName": "Modelo Can Mosaic Hoodie Sweatshirt",
+      "prodImgUrl": "https://i.localised.com/img/uo/product/cda6cbc1-7711-47c8-92a8-6cb6aea4a9b8.jpg?cb=1626959544221",
+      "prodPrice": "85000",
+      "prodDescription": "Hoodie topped with Modelo graphics. Features a classic pullover style with an adjustable hood and kanga pocket. Finished with ribbing trims.",
+      "prodContentCare": ["Machine wash", "Imported"]
+    }
+  ],
+  "best-list": [
+    {
+      "prodId": "b1",
+      "prodTypeId": "2",
+      "prodTypeName": "best",
+      "prodName": "Out From Under Lori Terry Racerback Jumpsuit",
+      "prodImgUrl": "https://i.localised.com/img/uo/product/64aa6230-2edc-4d55-9598-2d57509844a2.jpg?cb=1626959544221",
+      "prodPrice": "79000",
+      "prodDescription": "Slouchy jumpsuit by Out From Under made from a soft cotton terry for a casual touch and feel. Fits relaxed through the sleeveless top with a sleek racerback and banded waist. Scoop neck design finished with an ultra-relaxed bottom featuring a dropped inseam and tapered legs.",
+      "prodContentCare": ["100% Cotton", "Machine wash", "Imported"]
+    },
+    {
+      "prodId": "b2",
+      "prodTypeId": "2",
+      "prodTypeName": "best",
+      "prodName": "Urban Renewal Remnants Upcycled Quilt Applique Linen Chore Coat",
+      "prodImgUrl": "https://i.localised.com/img/uo/product/f3d51a0f-c10f-445b-9a42-5d3bed6c4a71.jpg?cb=1626959544221",
+      "prodPrice": "183000",
+      "prodDescription": "Chore coat topped with upcycled quilt patch accents at the pocket and back. Features a button placket to the front & tab collar. Each is unique & will vary from what is pictured.",
+      "prodContentCare": ["88% Cotton, 12% Linen", "Hand Wash"]
+    },
+    {
+      "prodId": "b3",
+      "prodTypeId": "2",
+      "prodTypeName": "best",
+      "prodName": "Dr. Martens Jadon Platform 8-Eye Boot",
+      "prodImgUrl": "https://i.localised.com/img/uo/product/74bb7c3d-9b5e-4fb3-ab36-948c1c0770ab.jpg?cb=1626959544221",
+      "prodPrice": "221000",
+      "prodDescription": "An icon reimagined with fiercely punk-inspired details in this platform iteration of Dr. Martens’ classic 8-eye combat boot. Smooth leather boot cut above ankle with an 8-eye lace-up closure and back pull tab. With their air-cushioned sole with top-stitch detailing complete with cotton laces, metal eyelets and a slightly raised heel. Finished with their signature slip-resistant rubber sole in a towering platform with iconic yellow stitching.",
+      "prodContentCare": ["Leather, rubber", "Spot clean", "Imported"]
+    }
+  ],
+  "md-list": [
+    {
+      "prodId": "m1",
+      "prodTypeId": "3",
+      "prodTypeName": "md",
+      "prodName": "Champion UO Exclusive Reverse Weave Tipped Crew Neck Sweatshirt",
+      "prodImgUrl": "https://i.localised.com/img/uo/product/e31d361a-224c-4615-8e20-35609b9c3ca6.jpg?cb=1626959544221",
+      "prodPrice": "97000",
+      "prodDescription": "Essential crew neck sweatshirt by Champion crafted in the brand’s signature reverse weave. Pullover style and topped with logo accents at the left chest & sleeve. Finished with striped accents at the ribbed cuffs, hem and neck. Only at Urban Outfitters.",
+      "prodContentCare": [
+        "84% Cotton, 16% polyester",
+        "Machine wash",
+        "Imported"
+      ]
+    },
+    {
+      "prodId": "m2",
+      "prodTypeId": "3",
+      "prodTypeName": "md",
+      "prodName": "BDG Royce Corduroy Shirt Jacket",
+      "prodImgUrl": "https://i.localised.com/img/uo/product/acba5064-b309-46d3-a4f4-10a6e18a5f75.jpg?cb=1626959544221",
+      "prodPrice": "122000",
+      "prodDescription": "Staple shirt jacket from BDG crafted from a woven corduroy for a casual look we love. Only at Urban Outfitters.",
+      "prodContentCare": ["100% Cotton", "Machine wash", "Imported"]
+    },
+    {
+      "prodId": "m3",
+      "prodTypeId": "3",
+      "prodTypeName": "md",
+      "prodName": "BDG Dad Slim Tapered Jean – Nostalgia Wash",
+      "prodImgUrl": "https://i.localised.com/img/uo/product/5d92b7d9-a2a8-4fdd-879d-d39a9f9f71e6.jpg?cb=1626959544221",
+      "prodPrice": "110000",
+      "prodDescription": "Essential dad jeans from BDG, exclusively available at Urban Outfitters. 100% cotton denim is cut in a relaxed fit with a slightly tapered leg opening and 5-pocket detailing. Topped with patch icon accents. Finished with a zip fly & button waist closure.",
+      "prodContentCare": ["100% Cotton", "Machine wash", "Imported"]
+    }
+  ]
+}

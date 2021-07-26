@@ -18,7 +18,10 @@ function App() {
         <NavBar />
         <Route path="/" component={HomeScreen} exact />
         <Route path="/products/list/:menuTitle" component={ProductListScreen} />
-        <Route path="/products/detail" component={ProductDetailScreen} />
+        <Route
+          path="/products/detail/:prodTypeName/:prodId"
+          component={ProductDetailScreen}
+        />
         <Route path="/cart" component={CartScreen} />
       </Router>
       <Footer />

@@ -1,81 +1,103 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import axios from "axios";
 // Components
 import BannerGroup from "../components/Banner/BannerGroup";
 import { MainPageProduct } from "../components/Content";
-// Images
-import home1 from "../assets/home1.jpg";
-import home2 from "../assets/home2.jpg";
-import home3 from "../assets/home3.jpg";
-import new1 from "../assets/new1.jpg";
-import new2 from "../assets/new2.jpg";
-import new3 from "../assets/new3.jpg";
-import md1 from "../assets/md1.jpg";
-import md2 from "../assets/md2.jpg";
-import md3 from "../assets/md3.jpg";
+import EmptyMessage from "../components/Content/EmptyMessage";
+// util
+import { SERVER_URL } from "../util/config";
+import LoadingSpinner from "../components/Content/LoadingSpinner";
 
 const bannerList = ["banner1.png", "banner2.png", "banner3.png", "banner4.png"];
 
 const HomeScreen = () => {
+  const [newList, setNewList] = useState([]);
+  const [bestList, setBestList] = useState([]);
+  const [mdList, setMdList] = useState([]);
+  const [isNewLoading, setIsNewLoading] = useState(false);
+  const [isBestLoading, setIsBestLoading] = useState(false);
+  const [isMdLoading, setIsMdLoading] = useState(false);
+
+  useEffect(() => {
+    // API 호출
+    const getData = async () => {
+      setIsNewLoading(true);
+      setIsBestLoading(true);
+      setIsMdLoading(true);
+      const newData = await axios.get(SERVER_URL + "new-list.json");
+      const bestData = await axios.get(SERVER_URL + "best-list.json");
+      const mdData = await axios.get(SERVER_URL + "md-list.json");
+
+      if (newData && bestData && mdData) {
+        setNewList(newData.data);
+        setIsNewLoading(false);
+        setBestList(bestData.data);
+        setIsBestLoading(false);
+        setMdList(mdData.data);
+        setIsMdLoading(false);
+      }
+    };
+
+    getData();
+  }, []);
+
   return (
     <Container>
       <BannerGroup bannerList={bannerList} />
       {/* NEW ITEMS */}
       <Title>NEW ITEMS WE LOVE &#128150;</Title>
       <ProductWrapper>
-        <MainPageProduct
-          src={home1}
-          title="BDG Stella Shirt Jacket"
-          price={109000}
-        />
-        <MainPageProduct
-          src={home2}
-          title="Creedence Clearwater Revival Psychedelic Tee"
-          price={48000}
-        />
-        <MainPageProduct
-          src={home3}
-          title="Modelo Can Mosaic Hoodie Sweatshirt"
-          price={85000}
-        />
+        {newList.length === 0 && !isNewLoading && <EmptyMessage />}
+        {isNewLoading && <LoadingSpinner />}
+        {newList.length > 0 &&
+          !isNewLoading &&
+          newList.map((item) => (
+            <MainPageProduct
+              key={item.prodId}
+              prodId={item.prodId}
+              prodTypeName={item.prodTypeName}
+              src={item.prodImgUrl}
+              title={item.prodName}
+              price={item.prodPrice}
+            />
+          ))}
       </ProductWrapper>
       {/* BEST SELLERS */}
       <Title>CUSTOMER FAVORITES &#128293;</Title>
       <ProductWrapper>
-        <MainPageProduct
-          src={new1}
-          title="Out From Under Lori Terry Racerback Jumpsuit"
-          price={79000}
-        />
-        <MainPageProduct
-          src={new2}
-          title="Urban Renewal Remnants Upcycled Quilt Applique Linen Chore Coat"
-          price={183000}
-        />
-        <MainPageProduct
-          src={new3}
-          title="Dr. Martens Jadon Platform 8-Eye Boot"
-          price={221000}
-        />
+        {bestList.length === 0 && !isBestLoading && <EmptyMessage />}
+        {isBestLoading && <LoadingSpinner />}
+        {bestList.length > 0 &&
+          !isBestLoading &&
+          bestList.map((item) => (
+            <MainPageProduct
+              key={item.prodId}
+              prodId={item.prodId}
+              prodTypeName={item.prodTypeName}
+              src={item.prodImgUrl}
+              title={item.prodName}
+              price={item.prodPrice}
+            />
+          ))}
       </ProductWrapper>
       {/* MD'S PICK */}
       <Title>PICKED OUT FOR YOU &#10024;</Title>
       <ProductWrapper>
-        <MainPageProduct
-          src={md1}
-          title="Out From Under Lori Terry Racerback Jumpsuit"
-          price={79000}
-        />
-        <MainPageProduct
-          src={md2}
-          title="Urban Renewal Remnants Upcycled Quilt Applique Linen Chore Coat"
-          price={183000}
-        />
-        <MainPageProduct
-          src={md3}
-          title="Dr. Martens Jadon Platform 8-Eye Boot"
-          price={221000}
-        />
+        {mdList.length === 0 && !isMdLoading && <EmptyMessage />}
+        {isMdLoading && <LoadingSpinner />}
+        {mdList.length > 0 &&
+          !isMdLoading &&
+          mdList.map((item) => (
+            <MainPageProduct
+              key={item.prodId}
+              prodId={item.prodId}
+              prodTypeName={item.prodTypeName}
+              src={item.prodImgUrl}
+              title={item.prodName}
+              price={item.prodPrice}
+            />
+          ))}
       </ProductWrapper>
     </Container>
   );
@@ -83,7 +105,6 @@ const HomeScreen = () => {
 
 const Container = styled.div`
   padding: 1rem 0;
-  margin-bottom: 1rem;
 `;
 
 const Title = styled.h2`
@@ -95,7 +116,6 @@ const ProductWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin-bottom: 3rem;
 `;
 
 export default HomeScreen;

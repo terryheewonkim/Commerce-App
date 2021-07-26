@@ -1,29 +1,64 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useParams } from "react-router";
 import styled from "styled-components";
 // components
 import MainTitle from "../components/Content/MainTitle";
 import InnerPageProduct from "../components/Content/InnerPageProduct";
-// sample images
-import new1 from "../assets/new1.jpg";
-import new2 from "../assets/new2.jpg";
-import new3 from "../assets/new3.jpg";
+import EmptyMessage from "../components/Content/EmptyMessage";
+import LoadingSpinner from "../components/Content/LoadingSpinner";
+// util
+import { SERVER_URL } from "../util/config";
 
 const ProductListScreen = () => {
   const params = useParams();
+  const menuTitle = params.menuTitle;
+
+  const [itemsList, setItemsList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  let url = SERVER_URL;
+  if (menuTitle === "new") {
+    url += "new-list.json";
+  } else if (menuTitle === "best") {
+    url += "best-list.json";
+  } else {
+    url += "md-list.json";
+  }
+
+  useEffect(() => {
+    // API 호출
+    const getData = async () => {
+      setIsLoading(true);
+      const response = await axios.get(url);
+
+      if (response) {
+        setItemsList(response.data);
+        setIsLoading(false);
+      }
+    };
+
+    getData();
+  }, [url]);
 
   return (
     <>
-      <MainTitle menuTitle={params.menuTitle} />
-      <TaxStatement>* All prices are tax and duty included!</TaxStatement>
+      <MainTitle menuTitle={menuTitle} />
+      <TaxStatement>* All prices are tax and duty included</TaxStatement>
       <ProductWrapper>
-        <InnerPageProduct src={new1} title="BDG Stella Shirt Jacket" price={109000} />
-        <InnerPageProduct
-          src={new2}
-          title="Creedence Clearwater Revival Psychedelic Tee"
-          price={48000}
-        />
-        <InnerPageProduct src={new3} title="Modelo Can Mosaic Hoodie Sweatshirt" price={85000} />
+        {itemsList.length === 0 && !isLoading && <EmptyMessage />}
+        {itemsList.length === 0 && isLoading && <LoadingSpinner />}
+        {itemsList.length > 0 &&
+          itemsList.map((item) => (
+            <InnerPageProduct
+              key={item.prodId}
+              prodId={item.prodId}
+              prodTypeName={item.prodTypeName}
+              src={item.prodImgUrl}
+              title={item.prodName}
+              price={item.prodPrice}
+            />
+          ))}
       </ProductWrapper>
     </>
   );

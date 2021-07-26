@@ -1,33 +1,84 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import styled from "styled-components";
 // components
 import AddItemButtons from "../components/Content/AddItemButtons";
 import LikeButton from "../components/Content/LikeButton";
-// sample image
-import home1 from "../assets/home1.jpg";
+import LoadingSpinner from "../components/Content/LoadingSpinner";
+import EmptyMessage from "../components/Content/EmptyMessage";
+// util
+import { SERVER_URL } from "../util/config";
 
 const ProductDetailScreen = () => {
-  const price = 109000;
+  // PARAMS
+  const { prodTypeName, prodId } = useParams();
+  // STATES
+  const [prodDetails, setProdDetails] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [itemCount, setItemCount] = useState(1);
+
+  let url = SERVER_URL;
+  if (prodTypeName === "new") {
+    url += "new-list.json";
+  } else if (prodTypeName === "best") {
+    url += "best-list.json";
+  } else {
+    url += "md-list.json";
+  }
+
+  useEffect(() => {
+    const getData = async () => {
+      setIsLoading(true);
+      const response = await axios.get(url);
+      const product = response.data.find((item) => item.prodId === prodId);
+      setProdDetails(product);
+      setIsLoading(false);
+    };
+
+    getData();
+  }, [url, prodId]);
+
+  // HANDLERS
+  const minusClickHandler = () => {
+    if (itemCount === 1) {
+      return;
+    }
+    setItemCount(itemCount - 1);
+  };
+
+  const plusClickHandler = () => {
+    setItemCount(itemCount + 1);
+  };
+
   return (
     <Container>
-      <ImageWrapper>
-        <img src={home1} alt="" />
-        <LikeButton />
-      </ImageWrapper>
-      <ContentWrapper>
-        <h1>BDG Stella Shirt Jacket</h1>
-        <Price>₩ {price.toLocaleString()}</Price>
-        <p>
-          Bold shirt jacket from UO’s own BDG. Structured cotton design fitted with a button placket
-          and pockets at the front.
-        </p>
-        <ButtonsContainer>
-          <MinusButton>-</MinusButton>
-          <span>1</span>
-          <PlusButton>+</PlusButton>
-        </ButtonsContainer>
-        <AddItemButtons />
-      </ContentWrapper>
+      {!prodDetails && !isLoading && <EmptyMessage />}
+      {isLoading && <LoadingSpinner />}
+      {prodDetails && !isLoading && (
+        <>
+          <ImageWrapper>
+            <img src={prodDetails.prodImgUrl} alt="" />
+            <LikeButton />
+          </ImageWrapper>
+          <ContentWrapper>
+            <h1>{prodDetails.prodName}</h1>
+            <Price>₩ {(+prodDetails.prodPrice).toLocaleString()}</Price>
+            <p>{prodDetails.prodDescription}</p>
+            <CareList>
+              {prodDetails.prodContentCare.map((item) => (
+                <li>- {item}</li>
+              ))}
+            </CareList>
+            <ButtonsContainer>
+              <Button onClick={minusClickHandler}>-</Button>
+              <span>{itemCount}</span>
+              <Button onClick={plusClickHandler}>+</Button>
+            </ButtonsContainer>
+            <AddItemButtons />
+          </ContentWrapper>
+        </>
+      )}
     </Container>
   );
 };
@@ -55,9 +106,13 @@ const ContentWrapper = styled.div`
     font-size: 2.5rem;
     margin-bottom: 0.7rem;
   }
-  p {
-    margin-bottom: 4rem;
-  }
+`;
+
+const CareList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 4rem;
 `;
 
 const Price = styled.span`
@@ -76,15 +131,14 @@ const ButtonsContainer = styled.div`
   }
 `;
 
-const MinusButton = styled.button`
+const Button = styled.button`
   background: none;
   border: 2px solid #333;
+  border-radius: 10px;
   width: 3rem;
   height: 2.5rem;
   font-size: 1.5rem;
   cursor: pointer;
 `;
-
-const PlusButton = styled(MinusButton)``;
 
 export default ProductDetailScreen;
