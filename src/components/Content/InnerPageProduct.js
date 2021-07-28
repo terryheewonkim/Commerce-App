@@ -20,7 +20,13 @@ const InnerPageProduct = ({ src, title, price, prodId, prodTypeName }) => {
         <ProductPrice>₩ {(+price).toLocaleString()}</ProductPrice>
         <LikeButton />
       </ProductWrapper>
-      <AddItemButtons />
+      <AddItemButtons
+        prodId={prodId}
+        amount={1}
+        prodPrice={price}
+        prodImgUrl={src}
+        prodName={title}
+      />
     </Wrapper>
   );
 };

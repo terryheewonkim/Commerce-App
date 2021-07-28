@@ -30,7 +30,10 @@ const LikeButton = () => {
       onClick={clickHandler}
       style={{ animation: isHighlighted ? "bump 300ms ease-out" : "" }}
     >
-      <FontAwesomeIcon icon={faHeart} style={{ color: isClicked ? "#faa0a0" : "black" }} />
+      <FontAwesomeIcon
+        icon={faHeart}
+        style={{ color: isClicked ? "#faa0a0" : "black" }}
+      />
     </Wrapper>
   );
 };

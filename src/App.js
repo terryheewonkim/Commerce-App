@@ -9,21 +9,27 @@ import CartScreen from "./screens/CartScreen";
 // Components
 import NavBar from "./components/Head/NavBar";
 import Footer from "./components/Foot/Footer";
+import CartProvider from "./store/cart-context";
 
 function App() {
   return (
     <Container>
       <GlobalStyle />
-      <Router>
-        <NavBar />
-        <Route path="/" component={HomeScreen} exact />
-        <Route path="/products/list/:menuTitle" component={ProductListScreen} />
-        <Route
-          path="/products/detail/:prodTypeName/:prodId"
-          component={ProductDetailScreen}
-        />
-        <Route path="/cart" component={CartScreen} />
-      </Router>
+      <CartProvider>
+        <Router>
+          <NavBar />
+          <Route path="/" component={HomeScreen} exact />
+          <Route
+            path="/products/list/:menuTitle"
+            component={ProductListScreen}
+          />
+          <Route
+            path="/products/detail/:prodTypeName/:prodId"
+            component={ProductDetailScreen}
+          />
+          <Route path="/cart" component={CartScreen} />
+        </Router>
+      </CartProvider>
       <Footer />
     </Container>
   );

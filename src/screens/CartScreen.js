@@ -1,31 +1,44 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 // components
 import { CartListItem } from "../components/Content";
-// sample images
-import home1 from "../assets/home1.jpg";
+import { CartContext } from "../store/cart-context";
 
 const CartScreen = () => {
+  const CartCtx = useContext(CartContext);
+
   return (
     <>
       <Title>YOUR CART</Title>
       <Wrapper>
         <ItemsWrapper>
-          <CartListItem src={home1} />
-          <CartListItem src={home1} />
+          {CartCtx.items.map((item) => (
+            <CartListItem
+              key={item.prodId}
+              prodId={item.prodId}
+              prodImgUrl={item.prodImgUrl}
+              prodName={item.prodName}
+              prodPrice={item.prodPrice}
+              amount={item.amount}
+            />
+          ))}
         </ItemsWrapper>
         <PurchaseDetailsWrapper>
           <h2>Purchase Details</h2>
           <ul>
-            <Item>
-              <p>Item Title</p>
-              <span>x Number</span>
-              <span>₩ 109,000</span>
-            </Item>
+            {CartCtx.items.map((item) => (
+              <Item key={item.prodId}>
+                <p>{item.prodName}</p>
+                <span>x {item.amount}</span>
+                <span>
+                  ₩ {(+item.prodPrice * item.amount).toLocaleString()}
+                </span>
+              </Item>
+            ))}
           </ul>
           <TotalPrice>
             <h3>Total: </h3>
-            <p>₩ 109,000</p>
+            <p>₩ {CartCtx.totalPrice.toLocaleString()}</p>
           </TotalPrice>
         </PurchaseDetailsWrapper>
       </Wrapper>
@@ -61,11 +74,12 @@ const PurchaseDetailsWrapper = styled.div`
   ul {
     position: relative;
     list-style: none;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 `;
 
 const Item = styled.li`
+  margin-bottom: 1rem;
   p {
     margin: 0 0 0.5rem 0;
   }

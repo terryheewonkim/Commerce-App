@@ -1,26 +1,46 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
+// components
+import { CartContext } from "../../store/cart-context";
 
-const CartListItem = ({ src }) => {
+const CartListItem = ({ prodId, prodImgUrl, prodName, prodPrice, amount }) => {
+  const CartCtx = useContext(CartContext);
+  const [finalAmount, setFinalAmount] = useState(amount);
+
+  // HANDLERS
+  const plusClickHandler = () => {
+    setFinalAmount(finalAmount + 1);
+    CartCtx.addItem({ prodId, amount: 1, prodPrice, prodImgUrl, prodName });
+  };
+
+  const minusClickHandler = () => {
+    setFinalAmount(finalAmount - 1);
+    CartCtx.removeItem(prodId);
+  };
+
+  const deleteClickHandler = () => {
+    CartCtx.deleteItem(prodId);
+  };
+
   return (
     <ItemsWrapper>
       <CartImage>
-        <img src={src} alt="" />
+        <img src={prodImgUrl} alt="" />
       </CartImage>
       <ItemDetail>
-        <p>BDG Stella Shirt Jacket</p>
-        <span>₩ 109,000</span>
+        <p>{prodName}</p>
+        <span>₩ {(+prodPrice).toLocaleString()}</span>
       </ItemDetail>
       <ButtonsContainer>
-        <Button>-</Button>
-        <span>3</span>
-        <Button>+</Button>
+        <Button onClick={minusClickHandler}>-</Button>
+        <span>{finalAmount}</span>
+        <Button onClick={plusClickHandler}>+</Button>
       </ButtonsContainer>
       <ItemTotalPrice>
         <p>Total</p>
-        <p>₩ 109,000</p>
+        <p>₩ {(+prodPrice * amount).toLocaleString()}</p>
       </ItemTotalPrice>
-      <DeleteButton>DELETE</DeleteButton>
+      <DeleteButton onClick={deleteClickHandler}>DELETE</DeleteButton>
     </ItemsWrapper>
   );
 };

@@ -4,7 +4,7 @@ import { useHistory } from "react-router";
 // components
 import AddItemButtons from "./AddItemButtons";
 
-const MainPageProduct = ({ src, title, price, prodId, prodTypeName }) => {
+const MainPageProduct = ({ src, title, prodPrice, prodId, prodTypeName }) => {
   const history = useHistory();
 
   return (
@@ -16,9 +16,15 @@ const MainPageProduct = ({ src, title, price, prodId, prodTypeName }) => {
       >
         <img src={src} alt="" />
         <ProductTitle>{title}</ProductTitle>
-        <ProductPrice>₩ {(+price).toLocaleString()}</ProductPrice>
+        <ProductPrice>₩ {(+prodPrice).toLocaleString()}</ProductPrice>
       </ProductWrapper>
-      <AddItemButtons />
+      <AddItemButtons
+        prodId={prodId}
+        amount={1}
+        prodPrice={prodPrice}
+        prodImgUrl={src}
+        prodName={title}
+      />
     </Wrapper>
   );
 };

@@ -67,15 +67,25 @@ const ProductDetailScreen = () => {
             <p>{prodDetails.prodDescription}</p>
             <CareList>
               {prodDetails.prodContentCare.map((item) => (
-                <li>- {item}</li>
+                <li key={item}>- {item}</li>
               ))}
             </CareList>
+            <ExpectedPrice>
+              Total Price: ₩{" "}
+              {(prodDetails.prodPrice * itemCount).toLocaleString()}
+            </ExpectedPrice>
             <ButtonsContainer>
               <Button onClick={minusClickHandler}>-</Button>
               <span>{itemCount}</span>
               <Button onClick={plusClickHandler}>+</Button>
             </ButtonsContainer>
-            <AddItemButtons />
+            <AddItemButtons
+              prodId={prodId}
+              amount={itemCount}
+              prodPrice={prodDetails.prodPrice * itemCount}
+              prodImgUrl={prodDetails.prodImgUrl}
+              prodName={prodDetails.prodName}
+            />
           </ContentWrapper>
         </>
       )}
@@ -119,6 +129,13 @@ const Price = styled.span`
   display: inline-block;
   font-size: 1.5rem;
   margin-bottom: 2rem;
+`;
+
+const ExpectedPrice = styled.span`
+  display: inline-block;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
 `;
 
 const ButtonsContainer = styled.div`

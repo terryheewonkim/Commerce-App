@@ -59,7 +59,7 @@ const HomeScreen = () => {
               prodTypeName={item.prodTypeName}
               src={item.prodImgUrl}
               title={item.prodName}
-              price={item.prodPrice}
+              prodPrice={item.prodPrice}
             />
           ))}
       </ProductWrapper>
@@ -77,7 +77,7 @@ const HomeScreen = () => {
               prodTypeName={item.prodTypeName}
               src={item.prodImgUrl}
               title={item.prodName}
-              price={item.prodPrice}
+              prodPrice={item.prodPrice}
             />
           ))}
       </ProductWrapper>
@@ -95,7 +95,7 @@ const HomeScreen = () => {
               prodTypeName={item.prodTypeName}
               src={item.prodImgUrl}
               title={item.prodName}
-              price={item.prodPrice}
+              prodPrice={item.prodPrice}
             />
           ))}
       </ProductWrapper>

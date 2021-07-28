@@ -1,17 +1,40 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
+import { CartContext } from "../../store/cart-context";
+
 const CartBar = () => {
+  const CartCtx = useContext(CartContext);
+  const [isHighlighted, setIsHighlighted] = useState(false);
+
+  let totalAmount = 0;
+  CartCtx.items.map((item) => (totalAmount += item.amount));
+
+  useEffect(() => {
+    setIsHighlighted(true);
+    const timer = setTimeout(() => {
+      setIsHighlighted(false);
+    }, 300);
+
+    // If button is ever removed, or if we rapidly add one item after another, we want to clear the old timer and make sure a new timer is set
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [totalAmount]);
+
   return (
     <Container>
-      <Wrapper to="/cart">
+      <Wrapper
+        to="/cart"
+        style={{ animation: isHighlighted ? "bump 300ms ease-out" : "" }}
+      >
         <FontAwesomeIcon icon={faShoppingCart} size="sm" />
         <span>CART</span>
-        <CountText>7</CountText>
+        <CountText>{totalAmount}</CountText>
       </Wrapper>
     </Container>
   );
@@ -44,10 +67,6 @@ const Wrapper = styled(Link)`
       background-color: #333;
       color: #fff;
     }
-  }
-
-  .bump {
-    animation: bump 300ms ease-out;
   }
 
   @keyframes bump {
