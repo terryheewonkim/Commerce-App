@@ -3,6 +3,7 @@ import styled from "styled-components";
 // components
 import { CartListItem } from "../components/Content";
 import { CartContext } from "../store/cart-context";
+import CheckoutBtn from "../components/Content/CheckoutBtn"
 
 const CartScreen = () => {
   const CartCtx = useContext(CartContext);
@@ -12,6 +13,7 @@ const CartScreen = () => {
       <Title>YOUR CART</Title>
       <Wrapper>
         <ItemsWrapper>
+          {CartCtx.items.length === 0 && <NoItemText>No items in cart yet!</NoItemText>}
           {CartCtx.items.map((item) => (
             <CartListItem
               key={item.prodId}
@@ -40,6 +42,8 @@ const CartScreen = () => {
             <h3>Total: </h3>
             <p>₩ {CartCtx.totalPrice.toLocaleString()}</p>
           </TotalPrice>
+          {/* Button for visual purposes only */}
+          <CheckoutBtn text="CHECKOUT" />
         </PurchaseDetailsWrapper>
       </Wrapper>
     </>
@@ -54,6 +58,13 @@ const Title = styled.h1`
 
 const Wrapper = styled.div`
   display: flex;
+`;
+
+const NoItemText = styled.p`
+  display: inline-block;
+  width: 100%;
+  font-size: 2rem;
+  text-align: center;
 `;
 
 const ItemsWrapper = styled.div`

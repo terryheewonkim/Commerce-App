@@ -19,16 +19,15 @@ const BannerGroup = ({ bannerList }) => {
     >
       {bannerList.map((item, index) => {
         return (
-          <SwiperSlide key={index.toString()}>
-            <BannerItem
-              onClick={() => {
-                history.push("/products/list/new");
-              }}
-            >
+          <SwiperSlide
+            key={index.toString()}
+            onClick={() => history.push(item.path)}
+          >
+            <BannerItem>
               {/* static경로로 기본 생성되어 있는 public폴더에 접근 */}
               {/* public 폴더에는 배포에 사용될 정적 리소스를 넣어두고 관리한다 */}
               {/* 여기서의 경로는 이미 /public 으로 시작하므로 그 다음부터의 경로를 작성한다*/}
-              <img src={`/images/${item}`} alt="" />
+              <img src={`/images/${item.filename}`} alt="" />
             </BannerItem>
           </SwiperSlide>
         );

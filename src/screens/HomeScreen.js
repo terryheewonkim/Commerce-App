@@ -9,7 +9,12 @@ import EmptyMessage from "../components/Content/EmptyMessage";
 import { SERVER_URL } from "../util/config";
 import LoadingSpinner from "../components/Content/LoadingSpinner";
 
-const bannerList = ["banner1.png", "banner2.png", "banner3.png", "banner4.png"];
+const bannerList = [
+  { filename: "banner1.png", path: "/products/detail/new/n2" },
+  { filename: "banner2.png", path: "/products/detail/best/b3" },
+  { filename: "banner3.png", path: "/products/detail/md/m2" },
+  { filename: "banner4.png", path: "/products/detail/md/m3" },
+];
 
 const HomeScreen = () => {
   const [newList, setNewList] = useState([]);
